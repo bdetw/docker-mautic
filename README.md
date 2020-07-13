@@ -31,13 +31,16 @@ Setting up MySQL Server:
         percona/percona-server:5.7 \
          --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
 
+    用下面指令查詢資料庫網址
+    $ docker inspect percona | grep IPAddress
+
 Running Mautic:
 
     $ docker volume create mautic_data
 
     $ docker run --name mautic -d \
         --restart=always \
-        -e MAUTIC_DB_HOST=127.0.0.1 \
+        -e MAUTIC_DB_HOST=資料庫網址 \
         -e MAUTIC_DB_USER=root \
         -e MAUTIC_DB_PASSWORD=mypassword \
         -e MAUTIC_DB_NAME=mautic \
